@@ -1,8 +1,12 @@
 const express = require('express')
 const AWS = require('aws-sdk');
 const path = require('path');
+const config = require('config')
 
-AWS.config.loadFromPath('./config/aws.json');
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || config.get("credentials.accessKeyId"),
+    accessSecretKey: process.env.AWS_SECRET_ACCESS_KEY || config.get("credentials.secretAccessKey")
+})
 
 const app = express();
 
