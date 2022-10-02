@@ -10,21 +10,69 @@ app.set("views", path.join(__dirname, "views"))
 
 const s3 = aws.s3Client.getInstance();
 
-app.get("/", async (req,res)=>{
+const run = async () => {
     try {
         const response = await s3.listObjects({
             Bucket: 'projects-puneet-panwar-2408'
         }).promise();
-        const itemKeys = [];
+        const prefix = "https://projects-puneet-panwar-2408.s3.ap-south-1.amazonaws.com/"
+        const projects = new Object();
         response.Contents.forEach(item => {
-            itemKeys.push(item.Key);
+            if(item.Size === 0){
+                const arr = item.Key.split("/")
+                projects[arr[0]]=[];
+            }
         })
-        res.render("index",{
-            itemKeys
+        response.Contents.forEach(item => {
+            if(item.Size > 0){
+                const arr = item.Key.split("/")
+                projects[arr[0]].push(prefix + encodeURIComponent(item.Key))
+            }
+        })
+        console.log(projects);
+        for(let key in projects){
+            console.log(key, projects[key])
+        }
+    } catch (error) {
+        
+    }
+}
+
+run();
+
+app.get("/", async (req,res)=> {
+    res.render("index")
+})
+
+app.get("/gallery", async (req,res)=>{
+    try {
+        const response = await s3.listObjects({
+            Bucket: 'projects-puneet-panwar-2408'
+        }).promise();
+        const prefix = "https://projects-puneet-panwar-2408.s3.ap-south-1.amazonaws.com/"
+        const projects = new Object();
+        response.Contents.forEach(item => {
+            if(item.Size === 0){
+                const arr = item.Key.split("/")
+                projects[arr[0]]=[];
+            }
+        })
+        response.Contents.forEach(item => {
+            if(item.Size > 0){
+                const arr = item.Key.split("/")
+                projects[arr[0]].push(prefix + encodeURIComponent(item.Key))
+            }
+        })
+        res.render("gallery",{
+            projects
         })
     } catch (err) {
         console.log(err);
     }
+})
+
+app.get("/contact", async (req,res) => {
+    res.render("contact")
 })
 
 const port = process.env.PORT || 5000;

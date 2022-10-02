@@ -1,0 +1,10 @@
+<%- include("./partials/header.ejs", {title: "Creative Corner"}) %>
+</head>
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <h1>This is the gallery page</h1>
+    <h2>These are the item keys</h2>
+    <% for(let key in projects) { %>
+        <%- include("./partials/project.ejs", {key: key, imageUrls: projects[key]}) %>
+    <% } %>
+    
