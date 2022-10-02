@@ -1,12 +1,6 @@
 const express = require('express')
-const AWS = require('aws-sdk');
 const path = require('path');
-const config = require('config')
-
-AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || config.get("credentials.accessKeyId"),
-    accessSecretKey: process.env.AWS_SECRET_ACCESS_KEY || config.get("credentials.secretAccessKey")
-})
+const aws = require('./providers/aws')
 
 const app = express();
 
@@ -14,9 +8,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'))
 app.set("views", path.join(__dirname, "views"))
 
-const s3 = new AWS.S3({
-    region: 'ap-south-1'
-});
+const s3 = aws.s3Client.getInstance();
 
 app.get("/", async (req,res)=>{
     try {
