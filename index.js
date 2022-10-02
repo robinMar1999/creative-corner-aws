@@ -1,7 +1,7 @@
 const express = require('express')
 const AWS = require('aws-sdk')
 
-AWS.config.loadFromPath('./config/aws.json');
+// AWS.config.loadFromPath('./config/aws.json');
 
 const app = express();
 
