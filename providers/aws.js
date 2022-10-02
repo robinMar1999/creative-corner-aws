@@ -3,11 +3,18 @@ const config = require('config')
 
 // 
 
-const accessKeyId = config.get("accessKeyId") || null;
-
-if(accessKeyId){
-    AWS.config.loadFromPath(__dirname + "/../config/default.json")
+try {
+    const accessKeyId = config.get("accessKeyId") || null;
+    if(accessKeyId){
+        AWS.config.loadFromPath(__dirname + "/../config/default.json")
+    }
+} catch (err) {
+    // do nothing
 }
+
+
+
+
 
 class s3Client {
     static s3 = undefined;
