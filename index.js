@@ -8,30 +8,26 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'))
 
-app.get("/", (req,res)=>{
-    res.render("index")
-})
-
 const s3 = new AWS.S3({
     region: 'ap-south-1'
 });
 
-const run = async () => {
+app.get("/", async (req,res)=>{
     try {
         const response = await s3.listObjects({
             Bucket: 'projects-puneet-panwar-2408'
         }).promise();
+        const itemKeys = [];
         response.Contents.forEach(item => {
-            console.log(item);
+            itemKeys.push(item.Key);
         })
-    } catch (error) {
-        console.log(error);
+        res.render("index",{
+            itemKeys
+        })
+    } catch (err) {
+        console.log(err);
     }
-}
-
-run();
-
-
+})
 
 const port = process.env.PORT || 5000;
 
