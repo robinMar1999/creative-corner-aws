@@ -1,12 +1,14 @@
 const express = require('express')
-const AWS = require('aws-sdk')
+const AWS = require('aws-sdk');
+const path = require('path');
 
-// AWS.config.loadFromPath('./config/aws.json');
+AWS.config.loadFromPath('./config/aws.json');
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'))
+app.set("views", path.join(__dirname, "views"))
 
 const s3 = new AWS.S3({
     region: 'ap-south-1'
