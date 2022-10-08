@@ -2,6 +2,8 @@
 </head>
 <body>
     <%- include("./partials/navbar.ejs") %>
+
+    <!-- hero section -->
     <div class="custom_hero">
         <div class="custom_hero_info">
             <div class="custom_hero_orange_square">
@@ -9,8 +11,66 @@
                 We are Creative Corner Architecture Agency
             </div>
             </div>
-            
         </div>
     </div>
-    
+
+    <div class="container">
+        <!-- What can you expect -->
+        <div class="row my-md-5 justify-content-between bg-light align-items-center">
+            <div class="col-12 col-md-6 p-5">
+                <h1>What can you expect?</h1>
+                <p >We will create modern design for your place which you always wanted. We will give you the best customer experience and guarantee that you will want to work with us again. We finish all our projects withing the specified timeline so that you can enjoy your life more & worry less.</p>
+                
+            </div>
+            <div class="d-none d-md-block col-md-6 p-0">
+                <img src="images/expect.jpg" alt="What can you expect in architecture design from us?" width="100%">
+            </div>
+        </div>
+
+        <!-- About Us -->
+        <div class="row my-md-5 justify-content-between bg-dark text-light align-items-center">
+            <div class="d-none d-md-block col-md-6 p-0">
+                <img src="images/aboutus.jpg" alt="Get to know about our architecture agency!" width="100%">
+            </div>
+            <div class="col-12 col-md-6 p-5"> 
+                <h1>Get to know about us</h1>
+                <ul>
+                <li>We are Rohtak based Architecture Agency</li>
+                <li>We have expertise in architecture design with over 10+ year of experience</li>
+                <li>Our specialty is creating modern design for your house that you always wanted</li>
+            </ul>
+            </div>
+            
+        </div>
+
+        <!-- Our Services -->
+        <div class="row my-md-5 justify-content-between bg-light align-items-center">
+            <div class="col-12 col-md-6 p-5">
+                <h1>Our Services</h1>
+                <ul>
+                    <li>Autocad 2D Planning</li>
+                    <li>Exterior & Interior Design 3D View</li>
+                    <li>Architecture 3D Design</li>
+                    <li>Facade Design 3D</li>
+                    <li>Landscape Design</li>
+                    <li>Renovation</li>
+                </ul>
+            </div>
+            <div class="d-none d-md-block col-md-6 p-0">
+                <img src="images/service.jpg" alt="Services that our architecture agency provides" width="100%">
+            </div>
+        </div>
+
+        <!-- Our Projects -->
+        <div class="my-5 text-center">
+            <h1 class="my-5 display-3">Our Projects</h1>
+            <div class="row g-3">
+                <% for(let imageUri of oneImagePerProject) { %>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <img src="<%= imageUri %>" alt="project-image" width="100%">
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
 <%- include("./partials/footer.ejs") %>
