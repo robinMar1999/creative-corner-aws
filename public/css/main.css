@@ -1,11 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
-
-* {
-    box-sizing: border-box;
+:root {
+  --custom_primary: #f58634;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
+* {
+  box-sizing: border-box;
+}
+
+.custom_hero {
+  background: url("images/hero_background.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  position: relative;
+  padding-left:32px;
+}
+
+.custom_hero_info {
+  width: 70%;
+  position: absolute;
+  bottom: 100px;
+}
+
+.custom_hero_orange_square {
+  border: 12px solid var(--custom_primary);
+  padding: 8px 0;
+  position: relative;
+  width: 200px;
+  height: 150px;
+}
+
+.custom_hero_text {
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  position: relative;
+  left: 30%;
+  width: 250px;
+  height: 100px;
+}
+
+@media(min-width: 768px){
+  .custom_hero {
+    height: 650px;
+    padding-left: 96px;
+  }
+
+  .custom_hero_info {
+  bottom: 150px;
+}
+
+  .custom_hero_orange_square {
+    border: 20px solid var(--custom_primary);
+    width: 300px;
+    height: 200px;
+  }
+
+  .custom_hero_text {
+    font-size: 40px;
+    width: 450px;
+  }
 }
