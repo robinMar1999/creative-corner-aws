@@ -19,10 +19,10 @@ router.get("/gallery", async (req, res) => {
   try {
     const projects = await s3Accessor.getProjectsWithImages();
     res.render("gallery", {
-      projects,
+      projects: projects
     });
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).render("500");
   }
 });

@@ -1,0 +1,48 @@
+<div class="card w-100 m-0 p-0">
+<img src="<%= project.images[0] %>"
+        alt="<%= project.info.projectName %>" 
+        class="card-img-top m-0">
+<div class="card-body p-4 m-0">
+    <h5 class="card-title"><%= project.info.projectName %></h5>
+    <p class="card-text"><%= project.info.description.substring(0,50) %></p>
+    <button type="button" class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#project-<%= project.id  %>">More Details</button>
+    
+    <div class="modal fade" id="project-<%= project.id  %>" tabindex="-1"     
+        aria-labelledby="project-<%= project.id  %>Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="project-<%= project.id  %>Label"><%= project.info.projectName %></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <%- include("./carousel.ejs", {images: project.images, id: project.id}) %>
+                </div>
+                <div class="col-12 col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <% for(let key in project.info) { %>
+                      <% if(key !== "projectName"){ %>
+                        <li class="list-group-item">
+                          <strong><%= key %>: </strong><%= project.info[key] %>
+                        </li>
+                      <% } %>
+                      
+                    <% } %>
+                  </ul>
+                </div>
+              </div>
+                
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

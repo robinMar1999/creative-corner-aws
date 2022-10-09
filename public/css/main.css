@@ -52,6 +52,19 @@
   height: 250px;
 }
 
+.custom_projects {
+  width: 100%;
+  margin: 120px 0;
+}
+
+.custom_carousel_image_container {
+  height: 50vh;
+}
+
+.custom_carousel_image {
+  height: 100%;
+}
+
 @media(min-width: 768px){
   .custom_hero {
     height: 650px;
